@@ -1,0 +1,541 @@
+
+
+<!-- FILE: index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>RTRWH — Home</title>
+  <link rel="stylesheet" href="style.css">
+  
+</head>
+<body class="page-home">
+  <header class="site-header">
+    <div class="brand">
+      <svg class="logo" viewBox="0 0 64 64" aria-hidden="true"><defs><linearGradient id="g" x1="0" x2="1"><stop offset="0" stop-color="#8fd19e"/><stop offset="1" stop-color="#3fb87f"/></linearGradient></defs><rect width="64" height="64" rx="12" fill="url(#g)"/><path d="M16 40c6-8 18-8 24 0v8H16v-8z" fill="#fff" opacity="0.95"/><path d="M24 28c2-6 12-10 16-6 4 4-6 12-16 6z" fill="#fff"/></svg>
+      <h1>RTRWH Assistant</h1>
+    </div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="calculate.html">Calculator</a>
+      <a href="report.html">Report</a>
+      <a href="login.html">Login</a>
+      <a href="signup.html">Sign Up</a>
+    </nav>
+  </header>
+
+  <main class="hero">
+    <section class="hero-left">
+      <h2>Assess rooftop rainwater harvesting at your location — instantly</h2>
+      <p>Enter simple site details, get runoff & recharge estimates, and smart recommendations tailored to your property. Built with GIS-aware mapping and local groundwater insights.</p>
+      <div class="cta-row">
+        <a class="btn primary" href="calculate.html">Start Assessment</a>
+        <a class="btn ghost" href="about.html">Learn More</a>
+      </div>
+      <ul class="features">
+        <li>Location-based rainfall & aquifer data</li>
+        <li>Cost–benefit & payback estimates</li>
+        <li>Design sizes & structure suggestions</li>
+      </ul>
+    </section>
+    <section class="hero-right">
+      <div class="card-glass showcase">
+        <!-- illustrative SVG graphic -->
+        <svg viewBox="0 0 400 260" class="show-svg" aria-hidden>
+          <defs>
+            <linearGradient id="lg" x1="0" x2="1"><stop offset="0" stop-color="#e8f8ee"/><stop offset="1" stop-color="#ffffff"/></linearGradient>
+          </defs>
+          <rect x="0" y="0" width="400" height="260" rx="14" fill="url(#lg)" stroke="#dff3e8"/>
+          <g transform="translate(30,20)">
+            <rect x="0" y="120" width="340" height="80" rx="8" fill="#f7fff8" stroke="#e1f2e6"/>
+            <path d="M40 100 Q80 70 120 100 T200 100 T280 100" fill="#bff0c9" opacity="0.9"/>
+            <rect x="40" y="40" width="120" height="60" rx="6" fill="#3fb87f" opacity="0.95"/>
+            <text x="58" y="78" fill="#fff" font-size="12" font-weight="700">ROOF</text>
+            <circle cx="270" cy="70" r="24" fill="#ffecb3" stroke="#f6e8a8"/>
+            <text x="256" y="76" font-size="11">Rain</text>
+          </g>
+        </svg>
+        <div class="show-stats">
+          <div>
+            <strong id="sample-runoff">Runoff</strong>
+            <small>per season</small>
+          </div>
+          <div>
+            <strong id="sample-recharge">Recharge</strong>
+            <small>potential</small>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <section class="how-it-works">
+    <h3>How it works</h3>
+    <div class="steps">
+      <article>
+        <div class="icon">1</div>
+        <h4>Provide site details</h4>
+        <p>Roof area, location, roof material and usage patterns.</p>
+      </article>
+      <article>
+        <div class="icon">2</div>
+        <h4>Get localized data</h4>
+        <p>We fetch rainfall & aquifer depth for your location.</p>
+      </article>
+      <article>
+        <div class="icon">3</div>
+        <h4>Receive recommendations</h4>
+        <p>Design sizes, recharge options and cost estimates.</p>
+      </article>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <p>© 2025 RTRWH Assistant — Built for groundwater resilience • Languages: English, Hindi, Marathi</p>
+  </footer>
+</body>
+</html>
+
+
+<!-- FILE: login.html (also contains signup modal/navigation to signup.html) -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Login — RTRWH</title>
+  <link rel="stylesheet" href="style.css">
+  
+</head>
+<body class="page-login">
+  <header class="site-header small">
+    <div class="brand">
+      <a href="index.html">RTRWH Assistant</a>
+    </div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="calculate.html">Calculator</a>
+      <a href="report.html">Report</a>
+      <a href="login.html">Login</a>
+      <a href="signup.html">Sign Up</a>
+    </nav>
+  </header>
+
+  <main class="center-card">
+    <form id="loginForm" class="card card-form" onsubmit="return handleLogin(event)">
+      <h2>Login</h2>
+      <label for="email">Email</label>
+      <input id="email" name="email" type="email" required placeholder="you@example.com">
+
+      <label for="password">Password</label>
+      <input id="password" name="password" type="password" required placeholder="••••••">
+
+      <div class="form-row">
+        <button class="btn primary" type="submit">Sign in</button>
+        <a class="btn ghost" href="signup.html">Sign up</a>
+      </div>
+    </form>
+  </main>
+
+  <footer class="site-footer small">
+    <p>Not registered? <a href="signup.html">Create an account</a></p>
+  </footer>
+</body>
+</html>
+
+
+<!-- FILE: signup.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Sign up — RTRWH</title>
+  <link rel="stylesheet" href="style.css">
+  
+</head>
+<body class="page-signup">
+  <header class="site-header small">
+    <div class="brand"><a href="index.html">RTRWH Assistant</a></div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="calculate.html">Calculator</a>
+      <a href="report.html">Report</a>
+      <a href="login.html">Login</a>
+      <a href="signup.html">Sign Up</a>
+    </nav>
+  </header>
+
+  <main class="center-card">
+    <form id="signupForm" class="card card-form" onsubmit="return handleSignup(event)">
+      <h2>Create account</h2>
+      <label for="name">Full name</label>
+      <input id="name" name="name" type="text" required placeholder="Your name">
+
+      <label for="emailS">Email</label>
+      <input id="emailS" name="email" type="email" required placeholder="you@example.com">
+
+      <label for="passS">Password</label>
+      <input id="passS" name="password" type="password" required placeholder="Create a password">
+
+      <label for="lang">Preferred language</label>
+      <select id="lang" name="lang">
+        <option>English</option>
+        <option>Hindi</option>
+        <option>Marathi</option>
+      </select>
+
+      <div class="form-row">
+        <button class="btn primary" type="submit">Sign up</button>
+        <a class="btn ghost" href="login.html">Back to login</a>
+      </div>
+    </form>
+  </main>
+
+  <footer class="site-footer small">
+    <p>By signing up you agree to the terms.</p>
+  </footer>
+</body>
+</html>
+
+
+<!-- FILE: calculate.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Calculate — RTRWH</title>
+  <link rel="stylesheet" href="style.css">
+  
+</head>
+<body class="page-calc">
+  <header class="site-header small">
+    <div class="brand"><a href="index.html">RTRWH Assistant</a></div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="calculate.html">Calculator</a>
+      <a href="report.html">Report</a>
+      <a href="login.html">Login</a>
+      <a href="signup.html">Sign Up</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <div class="grid">
+      <section class="card">
+        <h3>Site & roof details</h3>
+        <form id="calcForm" onsubmit="return runCalculation(event)">
+          <label>Location (lat,long)</label>
+          <input id="latlon" placeholder="e.g. 19.0760,72.8777" required>
+
+          <label>Roof area (m²)</label>
+          <input id="roofArea" type="number" min="1" step="0.1" value="100" required>
+
+          <label>Roof material</label>
+          <select id="roofMat">
+            <option value="0.9">Concrete / Tile (0.9)</option>
+            <option value="0.85">Asphalt / Metal (0.85)</option>
+            <option value="0.75">Thatched / Permeable (0.75)</option>
+          </select>
+
+          <label>Recharge structure</label>
+          <select id="structureType">
+            <option value="0.7" data-cost="30000">Recharge Pit (eff 0.7)</option>
+            <option value="0.6" data-cost="25000">Soakwell (eff 0.6)</option>
+            <option value="0.8" data-cost="45000">RWH Tank + Recharge (eff 0.8)</option>
+          </select>
+
+          <div class="form-row">
+            <button class="btn primary" type="submit">Compute</button>
+            <a class="btn ghost" href="report.html">View last report</a>
+          </div>
+        </form>
+      </section>
+
+      <aside class="card results" aria-live="polite">
+        <h3>Results</h3>
+        <dl>
+          <dt>Avg annual rainfall (mm)</dt><dd id="rainfall">—</dd>
+          <dt>Runoff volume (m³/yr)</dt><dd id="runoff">—</dd>
+          <dt>Recharge volume (m³/yr)</dt><dd id="recharge">—</dd>
+          <dt>Estimated Cost (₹)</dt><dd id="cost">—</dd>
+          <dt>Feasibility</dt><dd id="feasibility">—</dd>
+        </dl>
+        <div class="small-note">Tip: Use exact coordinates for best local data. This demo uses mock rainfall data.</div>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="site-footer small">
+    <p>Demo values — connect to IMD/CGWB APIs for production.</p>
+  </footer>
+</body>
+</html>
+
+
+<!-- FILE: report.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Report — RTRWH</title>
+  <link rel="stylesheet" href="style.css">
+  
+</head>
+<body class="page-report">
+  <header class="site-header small">
+    <div class="brand"><a href="index.html">RTRWH Assistant</a></div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="calculate.html">Calculator</a>
+      <a href="report.html">Report</a>
+      <a href="login.html">Login</a>
+      <a href="signup.html">Sign Up</a>
+    </nav>
+  </header>
+
+  <main class="container center-card">
+    <section class="card report-card">
+      <h2>Last Assessment Report</h2>
+      <div id="reportContent">
+        <p>No reports yet. Run an assessment to generate a report.</p>
+      </div>
+      <div class="form-row">
+        <a class="btn primary" id="downloadPdf">Download PDF</a>
+        <a class="btn ghost" href="calculate.html">New Assessment</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer small">
+    <p>Reports are stored in your browser for demo. Connect to backend DB for persistence.</p>
+  </footer>
+</body>
+</html>
+
+
+<!-- FILE: about.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>About — RTRWH Assistant</title>
+  <link rel="stylesheet" href="style.css">
+  
+</head>
+<body class="page-about">
+  <header class="site-header small">
+    <div class="brand"><a href="index.html">RTRWH Assistant</a></div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="calculate.html">Calculator</a>
+      <a href="report.html">Report</a>
+      <a href="login.html">Login</a>
+      <a href="signup.html">Sign Up</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <h2>About this demo</h2>
+      <p>This frontend demo shows an attractive, multilingual-capable UI for rooftop rainwater harvesting assessment. Integrate with IMD / CGWB / OpenStreetMap and your backend to make it production-ready.</p>
+      <h3>Next steps for production</h3>
+      <ul>
+        <li>Hook IMD/OpenWeather APIs for rainfall</li>
+        <li>Use CGWB for aquifer depth / groundwater data</li>
+        <li>Store user reports in server DB and add authentication</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="site-footer small">
+    <p>Designed for clarity & adoption — feel free to modify.</p>
+  </footer>
+</body>
+</html>
+
+
+/* FILE: style.css */
+:root{
+  --bg:#f7fff8;
+  --accent:#3fb87f;
+  --accent-2:#8fd19e;
+  --muted:#556; 
+  --card:#ffffff;
+  --glass: rgba(255,255,255,0.7);
+  --shadow: 0 6px 18px rgba(57,80,59,0.08);
+  --radius:14px;
+}
+*{box-sizing:border-box}
+body{font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; margin:0; color:#113; background:linear-gradient(180deg,var(--bg) 0%, #fff 100%);}
+.site-header{display:flex;align-items:center;justify-content:space-between;padding:18px 28px;background:transparent}
+.site-header.small{padding:12px 20px;border-bottom:1px solid rgba(63,184,127,0.08);}
+.brand{display:flex;gap:12px;align-items:center}
+.brand .logo{width:46px;height:46px}
+.brand h1{font-size:16px;margin:0;color:var(--accent)}
+nav a{margin-left:16px;color:#083d2f;text-decoration:none;font-weight:600}
+nav a.active{color:var(--accent)}
+.hero{display:flex;gap:28px;padding:36px 48px;align-items:stretch}
+.hero-left{flex:1}
+.hero h2{font-size:28px;color:#072; margin:6px 0 10px}
+.hero p{color:#234;max-width:58ch}
+.cta-row{margin:20px 0;display:flex;gap:12px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:10px;text-decoration:none;border:1px solid transparent;font-weight:700}
+.btn.primary{background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#fff;box-shadow:var(--shadow)}
+.btn.ghost{background:transparent;border:1px solid rgba(63,184,127,0.16);color:var(--accent)}
+.features{margin-top:18px;list-style:none;padding:0;display:flex;gap:12px}
+.features li{background:#fff;padding:8px 12px;border-radius:8px;box-shadow:var(--shadow)}
+.card-glass{background:linear-gradient(180deg, rgba(255,255,255,0.85), rgba(245,255,250,0.9));border-radius:12px;padding:18px;box-shadow:var(--shadow)}
+.showcase{width:380px;height:220px;display:flex;flex-direction:column;justify-content:space-between}
+.show-svg{width:100%;height:140px}
+.show-stats{display:flex;justify-content:space-between;padding-top:6px}
+.show-stats strong{color:var(--accent)}
+.how-it-works{padding:40px 48px}
+.steps{display:flex;gap:14px}
+.steps article{background:#fff;padding:18px;border-radius:12px;flex:1;box-shadow:var(--shadow)}
+.icon{width:40px;height:40px;border-radius:10px;background:linear-gradient(180deg,var(--accent),var(--accent-2));display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;margin-bottom:8px}
+.site-footer{padding:14px 28px;border-top:1px solid rgba(63,184,127,0.06);text-align:center;color:#345}
+.container{padding:28px}
+.grid{display:grid;grid-template-columns:2fr 1fr;gap:18px}
+.card{background:var(--card);padding:18px;border-radius:12px;box-shadow:var(--shadow)}
+.center-card{display:flex;align-items:center;justify-content:center;min-height:60vh;padding:28px}
+.card-form input, .card-form select, .card-form label{display:block;width:100%;margin:8px 0}
+.card-form input, .card-form select{padding:10px;border-radius:8px;border:1px solid rgba(0,0,0,0.07)}
+.results dl{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.small-note{font-size:12px;color:#6a7}
+.report-card{max-width:720px}
+.form-row{display:flex;gap:10px;align-items:center;margin-top:12px}
+/* responsiveness */
+@media (max-width:880px){
+  .hero{flex-direction:column}
+  .grid{grid-template-columns:1fr}
+  nav a{display:none}
+  .site-header{justify-content:flex-start}
+}
+
+
+/* extra small tweaks for visual polish */
+.card-form h2{margin-top:0}
+.card h3{margin-top:0}
+.btn:active{transform:translateY(1px)}
+
+
+/* FILE: script.js */
+// Minimal interactive JS for demo. Replace mock data with real API calls in production.
+(function(){
+  // tiny mocked rainfall lookup by lat/lon (for demo only)
+  function mockGetRainfall(lat,lon){
+    // simple deterministic pseudo-random by digits
+    const s = (Math.abs(Math.sin(lat*13.37 + lon*7.13))*1000)|0;
+    const base = 800 + (s % 800); // mm/year between 800-1600
+    return base;
+  }
+
+  // DOM helpers
+  function el(id){return document.getElementById(id)}
+
+  window.runCalculation = function(e){
+    e.preventDefault();
+    const latlon = el('latlon').value.trim();
+    let lat=19.0760, lon=72.8777; // default mumbai
+    if(latlon){const parts = latlon.split(',').map(x=>parseFloat(x)); if(parts.length>=2 && !isNaN(parts[0]) && !isNaN(parts[1])){lat=parts[0];lon=parts[1]}}
+
+    const area = parseFloat(el('roofArea').value) || 0;
+    const runoffCoeff = parseFloat(el('roofMat').value) || 0.85;
+    const structureOpt = el('structureType');
+    const structureEff = parseFloat(structureOpt.value);
+    const selected = structureOpt.options[structureOpt.selectedIndex];
+    const structureCost = parseFloat(selected.dataset.cost) || 30000;
+
+    const rainfall = mockGetRainfall(lat,lon); // mm/yr
+    // Convert mm to meters: mm/1000; volume (m3) = rainfall(m) * area(m2) * runoff coeff
+    const runoffVolume = (rainfall/1000) * area * runoffCoeff; // m3/yr
+    const rechargeVolume = runoffVolume * structureEff; // m3/yr
+
+    // cost estimation simple: base cost + per cubic meter handling
+    const variableCost = Math.round(rechargeVolume * 150); // Rs per m3 as proxy
+    const totalCost = Math.round(structureCost + variableCost);
+
+    const feasibilityScore = Math.min(100, Math.round((rechargeVolume/100)*10 + 30));
+
+    el('rainfall').textContent = rainfall + ' mm/yr';
+    el('runoff').textContent = runoffVolume.toFixed(2) + ' m³/yr';
+    el('recharge').textContent = rechargeVolume.toFixed(2) + ' m³/yr';
+    el('cost').textContent = '₹ ' + totalCost.toLocaleString();
+    el('feasibility').textContent = feasibilityScore + '% (est)';
+
+    // store quick report to localStorage
+    const report = {
+      created: new Date().toISOString(), lat,lon,area,rainfall,runoffVolume,rechargeVolume,totalCost,feasibilityScore
+    };
+    localStorage.setItem('rtrwh_last_report', JSON.stringify(report));
+    // update sample stats on homepage if open
+    const sampleRunoff = document.getElementById('sample-runoff');
+    const sampleRecharge = document.getElementById('sample-recharge');
+    if(sampleRunoff) sampleRunoff.textContent = runoffVolume.toFixed(0) + ' m³';
+    if(sampleRecharge) sampleRecharge.textContent = rechargeVolume.toFixed(0) + ' m³';
+
+    // also update report page content if available
+    const repContainer = document.getElementById('reportContent');
+    if(repContainer){
+      repContainer.innerHTML = `<p><strong>Report date:</strong> ${new Date(report.created).toLocaleString()}</p>
+      <p><strong>Location:</strong> ${lat.toFixed(4)}, ${lon.toFixed(4)}</p>
+      <p><strong>Roof area:</strong> ${area} m²</p>
+      <p><strong>Avg rainfall:</strong> ${rainfall} mm/yr</p>
+      <p><strong>Estimated recharge:</strong> ${rechargeVolume.toFixed(2)} m³/yr</p>
+      <p><strong>Estimated cost:</strong> ₹ ${totalCost.toLocaleString()}</p>`;
+    }
+
+    // friendly micro-animation on results card
+    const resultsCard = document.querySelector('.results');
+    if(resultsCard){ resultsCard.animate([{transform:'translateY(6px)'},{transform:'translateY(0)'}],{duration:350}) }
+
+    return false;
+  }
+
+  window.handleSignup = function(e){ e.preventDefault(); alert('Demo: account created (stored locally).'); const name = document.getElementById('name').value; localStorage.setItem('rtrwh_user', JSON.stringify({name:name,email:document.getElementById('emailS').value})); window.location.href='calculate.html'; return false }
+  window.handleLogin = function(e){ e.preventDefault(); alert('Demo: logged in (no backend).'); window.location.href='calculate.html'; return false }
+
+  // on report page load, hydrate last report
+  document.addEventListener('DOMContentLoaded', function(){
+    const rep = localStorage.getItem('rtrwh_last_report');
+    if(rep){
+      try{ const data = JSON.parse(rep); const elc = document.getElementById('reportContent'); if(elc){ elc.innerHTML = `<p><strong>Report date:</strong> ${new Date(data.created).toLocaleString()}</p>
+        <p><strong>Location:</strong> ${data.lat.toFixed(4)}, ${data.lon.toFixed(4)}</p>
+        <p><strong>Roof area:</strong> ${data.area} m²</p>
+        <p><strong>Avg rainfall:</strong> ${data.rainfall} mm/yr</p>
+        <p><strong>Estimated recharge:</strong> ${data.rechargeVolume.toFixed(2)} m³/yr</p>
+        <p><strong>Estimated cost:</strong> ₹ ${data.totalCost.toLocaleString()}</p>` }
+      }catch(err){}
+    }
+
+    // wire download pdf (very lightweight client-side approach)
+    const down = document.getElementById('downloadPdf');
+    if(down){down.addEventListener('click', function(){
+      const rep = localStorage.getItem('rtrwh_last_report');
+      if(!rep){ alert('No report found. Run calculation first.'); return }
+      const data = JSON.parse(rep);
+      const html = `RTRWH Assessment Report
+
+Date: ${new Date(data.created).toLocaleString()}
+Location: ${data.lat.toFixed(4)}, ${data.lon.toFixed(4)}
+Roof area: ${data.area} m²
+Avg rainfall: ${data.rainfall} mm/yr
+Estimated recharge: ${data.rechargeVolume.toFixed(2)} m³/yr
+Estimated cost: ₹ ${data.totalCost.toLocaleString()}`;
+      const blob = new Blob([html],{type:'text/plain'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a'); a.href = url; a.download = 'rtrwh_report.txt'; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
+    })}
+  })
+})();
