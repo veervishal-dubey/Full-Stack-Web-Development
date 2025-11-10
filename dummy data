@@ -197,20 +197,20 @@ ORDER BY efficiency DESC;
 
 -- Procedure 1: Calculate Potential Harvesting
 DELIMITER //
-CREATE PROCEDURE sp_calculate_harvesting(
-    IN p_site_id INT
+CREATE PROCEDURE harvest_calculation(
+    IN site_id INT
 )
 BEGIN
     SELECT 
-        sd.site_id,
-        sd.roof_area,
+        s.site_id,
+        s.roof_area,
         rd.avg_rainfall,
-        rd.runoff_coeff,
-        ROUND(sd.roof_area * rd.avg_rainfall * rd.runoff_coeff / 1000, 2) AS potential_harvest_cubic_meters,
-        ROUND(sd.roof_area * rd.avg_rainfall * rd.runoff_coeff, 2) AS potential_harvest_liters
-    FROM site_details sd
-    JOIN rainfall_data rd ON sd.location = rd.location
-    WHERE sd.site_id = p_site_id;
+        r.runoff_coeff,
+        ROUND(s.roof_area * r.avg_rainfall * r.runoff_coeff / 1000, 2) AS potential_harvest_in_cubic_meters,
+        ROUND(s.roof_area * r.avg_rainfall * r.runoff_coeff, 2) AS potential_harvest_in_liters
+    FROM site_details s
+    JOIN rainfall_data r ON s.location = r.location
+    WHERE s.site_id = site_id;
 END //
 DELIMITER ;
 
