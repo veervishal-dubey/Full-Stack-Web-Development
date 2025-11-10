@@ -215,31 +215,31 @@ END //
 DELIMITER ;
 
 -- Procedure 2: Get Recommended Structures
-DELIMITER //
-CREATE PROCEDURE sp_recommend_structures(
-    IN p_recharge_volume DECIMAL(10,2)
+DELIMITER $$
+
+CREATE PROCEDURE recommended_structures (
+    IN volume DECIMAL(10,2)
 )
 BEGIN
     SELECT 
-        structure_id,
-        type,
-        capacity,
-        cost,
+        structure_id, 
+        type, 
+        capacity, 
+        cost, 
         efficiency,
-        CASE 
-            WHEN capacity >= p_recharge_volume * 0.8 AND capacity <= p_recharge_volume * 1.2 THEN 'Perfect Match'
-            WHEN capacity >= p_recharge_volume * 0.5 AND capacity <= p_recharge_volume * 1.5 THEN 'Good Match'
-            ELSE 'Consider Multiple Units'
-        END AS suitability
+        CASE
+            WHEN capacity >= 0.8 * volume AND capacity <= 1.2 * volume THEN 'Perfect Match'
+            WHEN capacity >= 0.5 * volume AND capacity <= 1.5 * volume THEN 'Good Match'
+            ELSE 'Consider Multiple Tanks'
+        END AS Suitability
     FROM recharge_structures
-    WHERE capacity >= p_recharge_volume * 0.3
-    ORDER BY 
-        ABS(capacity - p_recharge_volume) ASC,
-        efficiency DESC
+    WHERE capacity >= 0.3 * volume
+    ORDER BY ABS(capacity - volume) ASC,
+             efficiency DESC
     LIMIT 5;
-END //
-DELIMITER ;
+END $$
 
+DELIMITER ;
 -- Procedure 3: Get User Sites Summary
 DELIMITER //
 CREATE PROCEDURE sp_user_sites_summary(
