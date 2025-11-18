@@ -1,12 +1,60 @@
-Backend: 
-1. Use bcrypt to store passwords securely. 
-2. Update login and register routes to handle bcrypt. 
-3. Integrate JWT auth middleware. 
-4. Add endpoint to serve rainfall by coordinates. 
-5. Serve Frontend Statically. 
-
-Frontend: 
-1. Replace mock rainfall by using backend routes. 
-2. Replace fake login, signup with proper backend routes. 
-3. Perform calculation at the backend, and fetch the result using the frontend. 
-4. Generate tokens and reports from the backend, not the front end. 
+BACKEND — TODO LIST
+1. Add bcrypt for password hashing
+Problem:
+Passwords are currently stored in plaintext (major security flaw).
+Fix:
+Hash passwords on signup, verify hashes on login.
+2. Update login and register routes
+Problem:
+Current routes assume plaintext passwords and don’t use hashing or proper validation.
+Fix:
+Use bcrypt.hash() on register, bcrypt.compare() on login.
+3. Implement JWT authentication middleware
+Problem:
+Nothing protects authenticated routes (site creation, reports, etc.). Frontend uses fake login with no
+server validation.
+Fix:
+Issue JWT on login, verify token on protected routes.
+4. Add rainfall-by-coordinates endpoint
+Problem:
+Frontend uses mock rainfall logic; backend gives no actual rainfall data.
+Fix:
+Create /api/rainfall?lat=x&lon;=y endpoint returning either stored rainfall data from DB or external API
+later.
+5. Add backend calculation endpoint
+Problem:
+Frontend calculates everything locally; backend stores nothing and can’t generate reports.
+Fix:
+Backend endpoint /api/calculate performing rainfall lookup, runoff calculation, recharge calculation,
+feasibility, storing site and report.
+6. Serve frontend statically from backend
+Problem:
+Frontend is standalone; backend cannot serve the built app.
+Fix:
+Use express.static() to serve the frontend build.
+FRONTEND — TODO LIST
+1. Replace fake rainfall logic
+Problem:
+Uses mockGetRainfall() which produces random values.
+Fix:
+Call backend /api/rainfall?lat=X&lon;=Y.
+2. Replace fake login/signup
+Problem:
+Frontend uses alerts and localStorage instead of real authentication.
+Fix:
+Send POST requests to backend /api/login and /api/register and store JWT token.
+3. Move calculation to backend
+Problem:
+Frontend computes runoff and recharge using JS; backend stays unaware.
+Fix:
+Call /api/calculate and receive results from backend.
+4. Fetch reports from backend instead of localStorage
+Problem:
+Reports stored only in browser memory are not persistent.
+Fix:
+Call backend /api/reports/:site_id and store reports in DB.
+5. Replace text-file “PDF” download
+Problem:
+Frontend generates a text file pretending to be a report.
+Fix:
+Backend should generate a PDF report and return it as a file stream.
