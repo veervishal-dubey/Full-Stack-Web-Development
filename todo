@@ -1,0 +1,12 @@
+Backend: 
+1. Use bcrypt to store passwords securely. 
+2. Update login and register routes to handle bcrypt. 
+3. Integrate JWT auth middleware. 
+4. Add endpoint to serve rainfall by coordinates. 
+5. Serve Frontend Statically. 
+
+Frontend: 
+1. Replace mock rainfall by using backend routes. 
+2. Replace fake login, signup with proper backend routes. 
+3. Perform calculation at the backend, and fetch the result using the frontend. 
+4. Generate tokens and reports from the backend, not the front end. 
