@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>About — RTRWH</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary-green: #3fb87f;
+      --light-green: #8fd19e;
+      --bg-light: #f7fff8;
+      --text-dark: #2d3748;
+      --text-light: #4a5568;
+      --shadow: 0 4px 12px rgba(0,0,0,0.1);
+      --shadow-hover: 0 8px 25px rgba(63,184,127,0.25);
+      --radius: 12px;
+      --transition: all 0.3s ease;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, var(--bg-light), #ffffff);
+      color: var(--text-dark);
+      line-height: 1.7;
+    }
+
+    /* ===== HEADER ===== */
+    .site-header {
+      position: sticky;
+      top: 0;
+      background: rgba(255,255,255,0.95);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      box-shadow: var(--shadow);
+      z-index: 100;
+    }
+
+    .brand a {
+      font-size: 1.4rem;
+      font-weight: 700;
+      text-decoration: none;
+      background: linear-gradient(45deg, var(--primary-green), var(--light-green));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    nav {
+      display: flex;
+      gap: 1.3rem;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--text-light);
+      font-weight: 500;
+    }
+
+    nav a:hover,
+    nav a.active {
+      color: var(--primary-green);
+    }
+
+    /* ===== PAGE HEADER ===== */
+    .page-hero {
+      padding: 3.5rem 2rem;
+      text-align: center;
+      background: var(--bg-light);
+    }
+
+    .page-hero h1 {
+      font-size: 2.4rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .page-hero p {
+      max-width: 800px;
+      margin: auto;
+      color: var(--text-light);
+    }
+
+    /* ===== CONTENT ===== */
+    .container {
+      max-width: 1100px;
+      margin: auto;
+      padding: 3rem 2rem;
+    }
+
+    .card {
+      background: white;
+      padding: 2.5rem;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      margin-bottom: 2.5rem;
+    }
+
+    .card h2 {
+      color: var(--primary-green);
+      margin-bottom: 1rem;
+    }
+
+    .card h3 {
+      margin-top: 1.8rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .card p {
+      color: var(--text-light);
+      text-align: justify;
+    }
+
+    .card ul {
+      margin-top: 1rem;
+      padding-left: 1.5rem;
+    }
+
+    .card li {
+      margin-bottom: 0.6rem;
+      color: var(--text-light);
+    }
+
+    /* ===== FOOTER ===== */
+    .site-footer {
+      background: var(--text-dark);
+      color: white;
+      text-align: center;
+      padding: 1.8rem;
+      font-size: 0.9rem;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      nav {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+
+<body class="page-about">
+
+<header class="site-header">
+  <div class="brand">
+    <a href="index.html">RTRWH</a>
+  </div>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="about.html" class="active">About</a>
+    <a href="calculate.html">Calculator</a>
+
+    <a href="login.html">Login</a>
+    <a href="signup.html">Sign Up</a>
+  </nav>
+</header>
+
+<section class="page-hero">
+  <h1>About RTRWH</h1>
+  <p>
+    RTRWH (Rooftop Rainwater Harvesting) Assistant is a web-based platform
+    designed to promote sustainable water management through awareness,
+    estimation, and planning tools.
+  </p>
+</section>
+
+<main class="container">
+  <section class="card">
+    <h2>About This Project</h2>
+    <p>
+      This project demonstrates a clean and user-friendly interface for
+      understanding rooftop rainwater harvesting potential. It is intended
+      as an academic and conceptual prototype that can be extended into a
+      full-scale system with real-world datasets and backend integration.
+    </p>
+
+    <h3>Purpose</h3>
+    <p>
+      The goal of RTRWH Assistant is to help users visualize how much rainwater
+      can be collected from rooftops, understand its benefits, and encourage
+      sustainable water practices at the household and community level.
+    </p>
+
+    <h3>Next Steps for Production</h3>
+    <ul>
+      <li>Integrate IMD or OpenWeather APIs for live rainfall data</li>
+      <li>Use CGWB datasets for groundwater depth and recharge analysis</li>
+      <li>Add user authentication and persistent report storage</li>
+      <li>Support regional languages for wider adoption</li>
+    </ul>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <p>Designed for clarity, sustainability, and adoption 🌱</p>
+</footer>
+
+</body>
+</html>
