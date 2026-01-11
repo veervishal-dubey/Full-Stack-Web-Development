@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Report | RTRWH</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- Rain animation -->
+<div class="rain"></div>
+
+<!-- Navbar -->
+<nav>
+  <div class="logo">🌧️ RTRWH</div>
+  <div>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="calculate.html">Calculate</a>
+    <a href="report.html">Report</a>
+    <a href="dashboard.html">Dashboard</a>
+    <a href="login.html">Login</a>
+    <a href="signup.html">Signup</a>
+  </div>
+</nav>
+
+<!-- Page content -->
+<section class="page">
+  <h1>Harvesting Report</h1>
+  <p>
+    Based on your roof and location inputs, here is the estimated annual rainwater collection potential.
+  </p>
+
+  <div class="card">
+    <h2>📊 Annual Harvest Potential</h2>
+    <p>Estimated Volume: <strong>~ 45,000 Litres/year</strong></p>
+    <p>This estimated volume helps in planning water storage, reducing dependency on municipal supply, and supporting sustainable usage.</p>
+    <button class="btn">Download PDF Report</button>
+  </div>
+
+  <div class="card">
+    <h2>💡 Usage Recommendations</h2>
+    <p>Use this report to design storage tanks, plan for non-potable uses, and implement water conservation strategies effectively.</p>
+  </div>
+</section>
+
+<!-- GSAP animation -->
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+<script>
+gsap.fromTo(".page",{opacity:0,y:40},{opacity:1,y:0,duration:1.2,clearProps:"all"});
+</script>
+
+<!-- Rain JS -->
+<script src="js/rain.js"></script>
+
+</body>
+</html>
