@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Calculate | RTRWH</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- Rain animation -->
+<div class="rain"></div>
+
+<!-- Navbar -->
+<nav>
+  <div class="logo">🌧️ RTRWH</div>
+  <div>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="calculate.html">Calculate</a>
+    <a href="report.html">Report</a>
+    <a href="dashboard.html">Dashboard</a>
+    <a href="login.html">Login</a>
+    <a href="signup.html">Signup</a>
+  </div>
+</nav>
+
+<!-- Page content -->
+<section class="page">
+  <h1>Rainwater Harvesting Calculator</h1>
+
+  <form id="calcForm">
+    <h2>📍 Location</h2>
+    <input id="city" placeholder="City" required>
+    <input id="location" placeholder="Latitude, Longitude" readonly>
+
+    <h2>🏠 Roof Details</h2>
+    <input id="length" type="number" placeholder="Roof Length (m)" required>
+    <input id="breadth" type="number" placeholder="Roof Breadth (m)" required>
+
+    <select id="material" required>
+      <option value="">Select Material</option>
+      <option value="concrete">Concrete</option>
+      <option value="metal">Metal Sheet</option>
+      <option value="tiles">Tiles</option>
+      <option value="asbestos">Asbestos</option>
+    </select>
+
+    <select id="slope" required>
+      <option value="">Roof Slope</option>
+      <option value="flat">Flat</option>
+      <option value="moderate">Moderate</option>
+      <option value="steep">Steep</option>
+    </select>
+
+    <input id="runoff" placeholder="Runoff Coefficient" readonly>
+
+    <button class="btn" type="submit">Estimate Harvest</button>
+  </form>
+</section>
+
+<!-- GSAP animation -->
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+<script>
+gsap.fromTo(".page",{opacity:0,y:40},{opacity:1,y:0,duration:1.2,clearProps:"all"});
+</script>
+
+<!-- Rain JS -->
+<script src="js/rain.js"></script>
+
+<!-- MAIN SCRIPT -->
+<script>
+/* ===============================
+   CONFIG
+================================ */
+const API_BASE = "http://localhost:5000"; // change after deployment
+
+/* ===============================
+   RUNOFF COEFFICIENT
+================================ */
+const materialSelect = document.getElementById("material");
+const runoffInput = document.getElementById("runoff");
+
+const runoffValues = {
+  concrete: 0.85,
+  metal: 0.9,
+  tiles: 0.75,
+  asbestos: 0.8
+};
+
+materialSelect.addEventListener("change", () => {
+  runoffInput.value = runoffValues[materialSelect.value] || "";
+});
+
+/* ===============================
+   GEOLOCATION
+================================ */
+let userLat = null;
+let userLon = null;
+
+window.addEventListener("load", () => {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+      position => {
+        userLat = position.coords.latitude.toFixed(5);
+        userLon = position.coords.longitude.toFixed(5);
+        document.getElementById("location").value = `${userLat}, ${userLon}`;
+        console.log("User location:", userLat, userLon);
+      },
+      error => {
+        alert("Location access denied. Please allow location.");
+        console.error(error.message);
+      }
+    );
+  } else {
+    alert("Geolocation not supported by your browser.");
+  }
+});
+
+/* ===============================
+   FORM SUBMIT → BACKEND
+================================ */
+document.getElementById("calcForm").addEventListener("submit", e => {
+  e.preventDefault();
+
+  if (!userLat || !userLon) {
+    alert("Location not available. Please allow location access.");
+    return;
+  }
+
+  const data = {
+    city: document.getElementById("city").value,
+    latitude: userLat,
+    longitude: userLon,
+    length: document.getElementById("length").value,
+    breadth: document.getElementById("breadth").value,
+    material: materialSelect.value,
+    slope: document.getElementById("slope").value,
+    runoff: runoffInput.value
+  };
+
+  fetch(`${API_BASE}/api/location`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(data)
+  })
+  .then(res => res.json())
+  .then(response => {
+    console.log("Data saved:", response);
+    alert("Location saved successfully!");
+    window.location.href = "report.html";
+  })
+  .catch(err => {
+    console.error(err);
+    alert("Failed to save data. Try again.");
+  });
+});
+</script>
+
+</body>
+</html>
