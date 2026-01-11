@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>About | RTRWH</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- Rain container -->
+<div class="rain"></div>
+
+<!-- Navbar -->
+<nav>
+  <div class="logo">🌧️ RTRWH</div>
+  <div>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="calculate.html">Calculate</a>
+    <a href="report.html">Report</a>
+    <a href="dashboard.html">Dashboard</a>
+    <a href="login.html">Login</a>
+    <a href="signup.html">Signup</a>
+  </div>
+</nav>
+
+<!-- Page content -->
+<section class="page">
+  <h1>About the Project</h1>
+  <p>
+    This project is developed to assist urban and rural households
+    in understanding how much rainwater can be harvested annually
+    using rooftop collection systems.
+  </p>
+
+  <p>
+    It combines civil engineering principles with modern web
+    technologies to provide instant estimation, visualization,
+    and reporting.
+  </p>
+
+  <div class="cards">
+    <div class="card">
+      <h2>🎓 Academic Use</h2>
+      <p>Designed for engineering and sustainability studies.</p>
+    </div>
+    <div class="card">
+      <h2>🌱 Environmental Impact</h2>
+      <p>Promotes groundwater recharge and water self-reliance.</p>
+    </div>
+  </div>
+</section>
+
+<!-- GSAP animation -->
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+<script>
+gsap.fromTo(".page",{opacity:0,y:40},{opacity:1,y:0,duration:1.2,clearProps:"all"});
+</script>
+
+<!-- Rain animation script -->
+<script src="js/rain.js"></script>
+
+</body>
+</html>
