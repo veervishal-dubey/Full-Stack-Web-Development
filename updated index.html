@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>RTRWH — Home</title>
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* Bottom-center popup */
+    #geoPopup {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(20, 40, 30, 0.95);
+      color: #fff;
+      padding: 14px 18px;
+      border-radius: 14px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+      font-size: 14px;
+      z-index: 9999;
+      min-width: 260px;
+      text-align: center;
+      display: none;
+      animation: slideUp 0.4s ease;
+    }
+
+    @keyframes slideUp {
+      from { opacity: 0; transform: translate(-50%, 20px); }
+      to { opacity: 1; transform: translate(-50%, 0); }
+    }
+  </style>
+</head>
+
+<body class="page-home">
+
+  <!-- Bottom popup -->
+  <div id="geoPopup">Requesting location access…</div>
+
+  <header class="site-header">
+    <div class="brand">
+      <svg class="logo" viewBox="0 0 64 64"><rect width="64" height="64" rx="12" fill="#3fb87f"/></svg>
+      <h1>RTRWH Assistant</h1>
+    </div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="calculate.html">Calculator</a>
+      <a href="report.html">Report</a>
+      <a href="login.html">Login</a>
+      <a href="signup.html">Sign Up</a>
+    </nav>
+  </header>
+
+  <main class="hero">
+    <section class="hero-left">
+      <h2>Assess rooftop rainwater harvesting at your location — instantly</h2>
+      <p>Location-based rainfall estimation using browser geolocation.</p>
+      <div class="cta-row">
+        <a class="btn primary" href="calculate.html">Start Assessment</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>© 2025 RTRWH Assistant</p>
+  </footer>
+
+  <!-- Auto location script -->
+  <script>
+    const popup = document.getElementById('geoPopup');
+
+    function showPopup(msg) {
+      popup.textContent = msg;
+      popup.style.display = 'block';
+    }
+
+    function hidePopup(delay = 5000) {
+      setTimeout(() => popup.style.display = 'none', delay);
+    }
+
+    window.addEventListener('load', () => {
+      if (!navigator.geolocation) {
+        showPopup("Geolocation not supported by your browser");
+        hidePopup();
+        return;
+      }
+
+      showPopup("Requesting location access…");
+
+      navigator.geolocation.getCurrentPosition(
+        (pos) => {
+          const lat = pos.coords.latitude.toFixed(4);
+          const lon = pos.coords.longitude.toFixed(4);
+
+          // store globally (can be used later)
+          window.USER_LOCATION = { lat, lon };
+
+          showPopup(`📍 Location detected<br>${lat}, ${lon}`);
+
+          // OPTIONAL demo rainfall message
+          setTimeout(() => {
+            showPopup(`🌧 Estimated rainfall data ready for your location`);
+            hidePopup();
+          }, 2500);
+        },
+        (err) => {
+          if (err.code === err.PERMISSION_DENIED) {
+            showPopup("❌ Location permission denied");
+          } else {
+            showPopup("⚠ Unable to fetch location");
+          }
+          hidePopup();
+        }
+      );
+    });
+  </script>
+
+</body>
+</html>
