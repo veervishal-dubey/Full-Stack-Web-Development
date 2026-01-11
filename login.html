@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav>
+  <div class="logo">🌧️ RTRWH</div>
+  <div>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="calculate.html">Calculate</a>
+    <a href="report.html">Report</a>
+    <a href="dashboard.html">Dashboard</a>
+    <a href="login.html">Login</a>
+    <a href="signup.html">Signup</a>
+  </div>
+</nav>
+
+<section class="page">
+  <h1>Login</h1>
+
+  <!-- IMPORTANT: add id to form -->
+  <form id="loginForm">
+    <input id="email" type="email" placeholder="Email" required><br>
+    <input id="password" type="password" placeholder="Password" required><br>
+    <button class="btn" type="submit">Login</button>
+  </form>
+
+  <p>New user? <a href="signup.html">Create account</a></p>
+</section>
+
+<!-- LOGIN SCRIPT -->
+<script>
+const API_BASE = "http://localhost:5000"; // backend URL
+
+document.getElementById("loginForm").addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+
+  fetch(`${API_BASE}/login`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      email: email,
+      password: password
+    })
+  })
+  .then(res => res.json())
+  .then(data => {
+    if (data.token) {
+      // Store JWT token
+      localStorage.setItem("token", data.token);
+
+      alert("Login successful!");
+      window.location.href = "dashboard.html";
+    } else {
+      alert(data.error || "Login failed");
+    }
+  })
+  .catch(err => {
+    console.error(err);
+    alert("Login failed. Try again.");
+  });
+});
+</script>
+
+</body>
+</html>
