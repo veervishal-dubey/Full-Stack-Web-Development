@@ -1,3 +1,5 @@
+
+/* this index will send the location to the backend */ 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,6 +32,17 @@
       from { opacity: 0; transform: translate(-50%, 20px); }
       to { opacity: 1; transform: translate(-50%, 0); }
     }
+
+    .btn {
+      padding: 10px 20px;
+      border-radius: 6px;
+      background: #3fb87f;
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+    .btn:hover { background: #36a06a; }
   </style>
 </head>
 
@@ -72,7 +85,7 @@
     const popup = document.getElementById('geoPopup');
 
     function showPopup(msg) {
-      popup.textContent = msg;
+      popup.innerHTML = msg; // allow line breaks
       popup.style.display = 'block';
     }
 
@@ -94,16 +107,28 @@
           const lat = pos.coords.latitude.toFixed(4);
           const lon = pos.coords.longitude.toFixed(4);
 
-          // store globally (can be used later)
+          // store globally
           window.USER_LOCATION = { lat, lon };
 
           showPopup(`📍 Location detected<br>${lat}, ${lon}`);
 
-          // OPTIONAL demo rainfall message
-          setTimeout(() => {
-            showPopup(`🌧 Estimated rainfall data ready for your location`);
+          // === Send location to backend ===
+          fetch('/api/location', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ latitude: lat, longitude: lon })
+          })
+          .then(res => res.json())
+          .then(data => {
+            console.log("Server response:", data);
+            showPopup(`🌧 Estimated rainwater you can harvest: <strong>${data.estimatedWater.toLocaleString()}</strong> liters`);
+            hidePopup(7000);
+          })
+          .catch(err => {
+            console.error("Error sending location:", err);
+            showPopup("⚠ Could not send location to server");
             hidePopup();
-          }, 2500);
+          });
         },
         (err) => {
           if (err.code === err.PERMISSION_DENIED) {
@@ -119,3 +144,4 @@
 
 </body>
 </html>
+
